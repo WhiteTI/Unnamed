@@ -1,0 +1,25 @@
+.headerBg {
+    background: #24242E;
+    border-right: 1px solid #363643;
+}
+
+.gameSwitcher {
+    height: 58px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #191920;
+    transition: height .3s ease;
+
+    img {
+        filter: saturate(0);
+        transition: ease 0.3s;
+    }
+
+    img:hover {
+        filter: saturate(1);
+    }
+}
+
+.gameSwitcher:hover {
+    height: 158px;
+}

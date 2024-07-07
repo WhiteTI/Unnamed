@@ -1,0 +1,18 @@
+.mainBgImage {
+    height: 390px;
+    box-shadow: inset 0px -200px 100px 0px rgba(0, 0, 0, 0.56);
+    background-image: url("../assets/img/homeBG.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    background-position-y: -271px;
+}
+
+.mainBgColor {
+    background-color: var(--primary-bg-color);
+}
+
+.title {
+    color: var(--text-color);
+    font-size: 60px;
+}

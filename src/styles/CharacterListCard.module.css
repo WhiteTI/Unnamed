@@ -1,0 +1,20 @@
+.card {
+    width: 136px;
+    height: 280px;
+    box-shadow: inset 0px -66px 50px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    color: var(--text-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -52px;
+
+    img {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 8px;
+        left: 4px;
+    }
+}

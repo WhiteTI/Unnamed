@@ -1,0 +1,20 @@
+:root {
+    --primary-bg-color: #14141B;
+    --5-star-color: #FFCC33;
+    --4-star-color: #9A69D4;
+    --pyro-color: #FF6640;
+    --pyro-second-color: #3D1818;
+    --hydro-color: #00c0ff;
+    --hydro-second-color: #3D1818;
+    --dendro-color: #9be53d;
+    --dendro-second-color: #3D1818;
+    --electro-color: #cc80ff;
+    --electro-second-color: #3D1818;
+    --anemo-color: #33d7a0;
+    --anemo-second-color: #3D1818;
+    --cryo-color: #7af2f2;
+    --cryo-second-color: #3D1818;
+    --geo-color: #ffb00d;
+    --geo-second-color: #3D1818;
+    --text-color: #EBEAEA;
+}

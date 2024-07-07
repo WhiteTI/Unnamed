@@ -1,0 +1,89 @@
+.wrapper {
+    border-radius: 0px 0px 6px 0px;
+    backdrop-filter: blur(20px);
+    background: radial-gradient(112.29% 61.47% at 49% -13%,rgba(31, 31, 39, 0.53),rgb(31, 31, 39) 43.546%)/* Предупреждение: градиент использует вращение, не поддерживаемое CSS, и может работать не так, как ожидается. */;
+}
+
+.imgBackground {
+    width: 166px;
+    height: 166px;
+    border: 1.5px solid rgb(235, 234, 234);
+    border-radius: 4px;
+    background:  var(--4-star-color);
+}
+
+.elreText {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(174, 174, 174);
+}
+
+.elementLogo {
+    img {
+        height: 34px;
+    }
+}
+
+.weapon {
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
+
+    .weaponImg {
+        height: 52px;
+        width: 52px;
+        background-color: #1F1F27;
+        border-bottom: 0.5px solid #363643;
+        border-left: 0.5px solid #363643;
+        border-top: 0.5px solid #363643;
+    }
+
+    .weaponText {
+        width: 100px;
+        height: 52px;
+        border-radius: 0px 4px 4px 0px;
+        background-color: #363643;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+.description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+}
+
+.levelBackground {
+    background-color: #24242E;
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.level {
+    background-color: #191920;
+    border-radius: 4px;
+}
+
+.levelStats {
+    background-color: #191920;
+    width: 25%;
+
+}
+
+
+.talents {
+    background-color: #24242E;
+    border-radius: 4px;
+    padding: 22px;
+
+    img {
+        width: 100px;
+        background-color: #1F1F27;
+        border-radius: 6px;
+    }
+}

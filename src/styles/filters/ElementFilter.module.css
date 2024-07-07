@@ -1,0 +1,7 @@
+.elementBtn {
+    background-color: #363643;
+    width: 53px;
+    height: 53px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 14px;
+}
