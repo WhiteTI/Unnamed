@@ -37,19 +37,19 @@ const SingleCharacterPage = () => {
 
     if (isPending) return <Loading/>
 
-    const {color, elemImg} = useElement(data.Element);
+    // const {color, elemImg} = useElement(data.Element);
 
     return (
         <div className={`${classes.mainBgColor} relative`}>
             <Helmet>
-                <title>{data.CharacterName}/{location}</title>
+                <title>{data.name}/{location}</title>
             </Helmet>
 
-            <img className={`${classes.fullWish} absolute z-0`} src={data.FullWish} alt=""/>
+            <img className={`${classes.fullWish} absolute z-0`} src={data.bgImage} alt=""/>
             <div className={`${classes.imageShadow} absolute z-0`}></div>
 
             <div className='container mx-auto pt-64'>
-                <h1 className={`${classes.name} font-bold uppercase z-10 relative mb-6`}>{data.CharacterName}</h1>
+                <h1 className={`${classes.name} font-bold uppercase z-10 relative mb-6`}>{data.name}</h1>
                 <div className='flex'>
                     <nav className={`z-10 flex flex-col ${classes.menu}`}>
                         {
@@ -57,7 +57,7 @@ const SingleCharacterPage = () => {
                                 <NavLink key={link.path} style={({isActive}) => {
                                     return {
                                         fontWeight: isActive ? 600 : '',
-                                        borderRight: isActive ? `4px solid ${color}` : '',
+                                        borderRight: isActive ? `4px solid var(${data.element.color})` : '',
                                         borderRadius: isActive ? '4px 0px 0px 4px' : '',
                                         background: isActive ? 'rgba(61, 24, 24, 0.58)' : ''
                                     }
@@ -66,10 +66,10 @@ const SingleCharacterPage = () => {
                         }
                     </nav>
                     <div className='z-10 w-full'>
-                        <h2 style={{color: color, borderBottom: `1px solid ${color}`}} className={`${classes.titleBlock}`}>{location.toUpperCase()}</h2>
+                        <h2 style={{color: `var(${data.element.color})`, borderBottom: `1px solid var(${data.element.color})`}} className={`${classes.titleBlock}`}>{location.toUpperCase()}</h2>
 
                         <div className={`${classes.wrapper} p-8`}>
-                            <Outlet context={[data, color, elemImg]}/>
+                            <Outlet context={[data, data.element.color, data.element.image]}/>
                         </div>
                     </div>
                 </div>

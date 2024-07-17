@@ -31,22 +31,22 @@ const CharacterList = () => {
                     <CharacterListCard
                         key={char.$id}
                         id={char.$id}
-                        name={char.CharacterName}
-                        element={char.Element}
-                        img={char.MultiWish}
-                        rarity={char.Rarity}
-                        weapon={char.WeaponType}
+                        name={char.name}
+                        element={char.element}
+                        img={char.listImage}
+                        rarity={char.rarity}
+                        weapon={char.weaponType}
                     />
                 ))
                 : data?.map(char => (
                     <CharacterListCard
                         key={char.$id}
                         id={char.$id}
-                        name={char.CharacterName}
-                        element={char.Element}
-                        img={char.MultiWish}
-                        rarity={char.Rarity}
-                        weapon={char.WeaponType}
+                        name={char.name}
+                        element={char.element}
+                        img={char.listImage}
+                        rarity={char.rarity}
+                        weapon={char.weaponType}
                     />
                 ))
             }

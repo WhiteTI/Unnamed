@@ -8,14 +8,14 @@ const Constellation = () => {
     return (
         <div>
             {
-                character.constellations.map(obj =>
+                character.constellation.map(obj =>
                     <div key={obj.$id} className='mb-5'>
                         <div className={`flex py-3 px-6 items-center text-2xl font-semibold gap-x-10 mb-1 ${classes.constellationTitle}`}>
-                            <img className='w-16' src={obj.ConstellationImage} alt={obj.ConstellationName}/>
-                            <span>{obj.ConstellationName}</span>
+                            <img className='w-16' src={obj.image} alt={obj.name}/>
+                            <span>{obj.name}</span>
                         </div>
                         <div className={`py-3 px-6 ${classes.constellationDecs}`}>
-                            <span>{obj.ConstellationDescription}</span>
+                            <span>{obj.description}</span>
                         </div>
                     </div>
                 )
