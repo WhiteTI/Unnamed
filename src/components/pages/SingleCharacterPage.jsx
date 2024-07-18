@@ -37,8 +37,6 @@ const SingleCharacterPage = () => {
 
     if (isPending) return <Loading/>
 
-    // const {color, elemImg} = useElement(data.Element);
-
     return (
         <div className={`${classes.mainBgColor} relative`}>
             <Helmet>

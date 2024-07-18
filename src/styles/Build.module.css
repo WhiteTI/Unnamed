@@ -1,0 +1,29 @@
+.title {
+    background-color: #24242E;
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.content {
+
+}
+
+.card {
+    width: 255px;
+    background-color: #191920;
+}
+
+.imgWrapper {
+    min-width: 80px;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background-image: linear-gradient(136deg, rgba(49, 43, 71, .5294117647058824), transparent);
+}
+
+.mainStatsCard {
+    @apply flex flex-col items-center;
+    background-color: #191920;
+    width: 340px;
+    padding: 8px;
+}

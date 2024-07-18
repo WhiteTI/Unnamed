@@ -10,6 +10,7 @@ import Page404 from "./components/pages/Page404.jsx";
 import Constellation from "./components/constellation/Constellation.jsx";
 import {useState} from "react";
 import Admin from "./components/pages/Admin.jsx";
+import Build from "./components/build/Build.jsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -31,7 +32,7 @@ function App() {
                         <Route path='/characters' element={<CharactersPage/>}/>
                         <Route path='/characters/:id' element={<SingleCharacterPage/>}>
                             <Route path='overview' element={<Overview/>}/>
-                            <Route path='builds' element={<p>BUILDS</p>}/>
+                            <Route path='builds' element={<Build/>}/>
                             <Route path='constellation' element={<Constellation/>}/>
                             <Route path='teams' element={<p>teams</p>}/>
                             <Route path='gallery' element={<p>gallery</p>}/>

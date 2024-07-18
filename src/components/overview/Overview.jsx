@@ -6,8 +6,6 @@ import star from '../../assets/img/5star.svg'
 import baseHP from '../../assets/img/baseHP.svg'
 import baseATK from '../../assets/img/atk.svg'
 import baseDEF from '../../assets/img/def.svg'
-import ATK from '../../assets/img/ATKp.svg'
-import bow from '../../assets/img/Icon_Bow.webp'
 
 const Overview = () => {
     const [character, color, elemImg] = useOutletContext()
@@ -128,9 +126,17 @@ const Overview = () => {
                     }
                 </div>
                 <hr className='my-6'/>
-                <div className='flex gap-x-5'>
-                    <SkillInfo activeSkill={activeSkill}/>
-                </div>
+                {/*<div className='flex gap-x-5'>*/}
+                {/*    <SkillInfo skill={activeSkill}/>*/}
+                {/*</div>*/}
+                {
+                    character.skill.map(item => (
+                        <div className='flex gap-x-14' style={{display: activeSkill.$id == item.$id ? 'flex' : 'none', height: '460px'}}>
+                            <SkillInfo skill={item}/>
+                        </div>
+                        )
+                    )
+                }
             </div>
 
             <div className='flex gap-x-4 mt-5'>
@@ -145,43 +151,39 @@ const Overview = () => {
                             <div className='py-2 px-4' style={{backgroundColor: '#24242E', borderRadius: '0 0 4px 4px'}}>
                                 <p>{skill.description}</p>
                             </div>
-                        </div>)
+                        </div>
+                    )
                 }
             </div>
         </>
     );
 };
 
-const SkillInfo = ({activeSkill}) => {
+const SkillInfo = ({skill}) => {
     const [skillLevel, setSkillLevel] = useState(9)
 
     return (
         <>
-            {activeSkill?.skillStats
-                ? <>
-                    <div className='w-6/12'>
-                        <p>{activeSkill.description.split('').map((text, i) => {
-                            if (text === '*') return (<br key={i}/>)
-                            return <span key={i}>{text}</span>
-                        })}</p>
+            <div className='w-6/12 overflow-auto'>
+                <p>{skill.description.split('').map((text, i) => {
+                    if (text === '*') return (<br key={i}/>)
+                    return <span key={i}>{text}</span>
+                })}</p>
+            </div>
+            <div className='w-6/12 overflow-auto'>
+                <div className='flex items-center gap-x-5 mb-2'>
+                    <p className='text-xl font-medium'>Level</p>
+                    <div className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
+                        {skillLevel}
                     </div>
-                    <div className='w-6/12'>
-                        <div className='flex items-center gap-x-5 mb-2'>
-                            <p className='text-xl font-medium'>Level</p>
-                            <div className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
-                                {skillLevel}
-                            </div>
-                            <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel} onChange={(event) => setSkillLevel(event.target.value)}/>
-                        </div>
-                        <div>
-                            {activeSkill.skillStats[skillLevel - 1].value.map(stat => (
-                                <div className='py-1.5 px-3 mb-0.5' style={{borderRadius: '4px', backgroundColor: '#191920'}} key={stat}>{stat}</div>
-                            ))}
-                        </div>
-                    </div>
-                </>
-                : <p>{activeSkill.description}</p>
-            }
+                    <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel} onChange={(event) => setSkillLevel(event.target.value)}/>
+                </div>
+                <div>
+                    {skill.skillStats[skillLevel - 1].value.map(stat => (
+                        <div className='py-1.5 px-3 mb-0.5' style={{borderRadius: '4px', backgroundColor: '#191920'}} key={stat}>{stat}</div>
+                    ))}
+                </div>
+            </div>
         </>
     )
 }
