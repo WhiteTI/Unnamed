@@ -131,7 +131,7 @@ const Overview = () => {
                 {/*</div>*/}
                 {
                     character.skill.map(item => (
-                        <div className='flex gap-x-14' style={{display: activeSkill.$id == item.$id ? 'flex' : 'none', height: '460px'}}>
+                        <div key={item.$id} className='flex gap-x-14' style={{display: activeSkill.$id == item.$id ? 'flex' : 'none', height: '460px'}}>
                             <SkillInfo skill={item}/>
                         </div>
                         )

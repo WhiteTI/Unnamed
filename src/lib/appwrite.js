@@ -1,4 +1,4 @@
-import {Client, Databases} from "appwrite";
+import {Account, Client, Databases} from "appwrite";
 
 const client = new Client();
 
@@ -7,12 +7,13 @@ client
     .setProject(import.meta.env.VITE_PROJECTID);
 
 const databases = new Databases(client);
+const account = new Account(client)
 
 async function getAllCharacters() {
     try {
         return await databases.listDocuments(
             import.meta.env.VITE_DATABASEID,
-            import.meta.env.VITE_COLLECTIONID
+            import.meta.env.VITE_CHARACTER_COLLECTIONID
         );
     } catch (e) {
         throw e.message
@@ -23,7 +24,7 @@ async function getCharacter(id) {
     try {
         return await databases.getDocument(
             import.meta.env.VITE_DATABASEID,
-            import.meta.env.VITE_COLLECTIONID,
+            import.meta.env.VITE_CHARACTER_COLLECTIONID,
             id
         )
     } catch (e) {
@@ -31,7 +32,32 @@ async function getCharacter(id) {
     }
 }
 
+async function getAllWeapons() {
+    try {
+        return await databases.listDocuments(
+            import.meta.env.VITE_DATABASEID,
+            import.meta.env.VITE_WEAPONS_COLLECTIONID
+        );
+    } catch (e) {
+        throw e.message
+    }
+}
+
+async function getAllArtifacts() {
+    try {
+        return await databases.listDocuments(
+            import.meta.env.VITE_DATABASEID,
+            import.meta.env.VITE_ARTIFACTS_COLLECTIONID
+        );
+    } catch (e) {
+        throw e.message
+    }
+}
+
 export {
     getAllCharacters,
-    getCharacter
+    getCharacter,
+    getAllWeapons,
+    getAllArtifacts,
+    account
 }

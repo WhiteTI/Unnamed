@@ -3,7 +3,7 @@ import reactLogo from '../../assets/img/react.png'
 
 const Footer = () => {
     return (
-        <footer className={classes.footerBgImage}>
+        <footer className={`bg-fixed ${classes.footerBgImage}`}>
             <div className='container mx-auto flex justify-between'>
                 <div className='pt-10 text-2xl'>
                     <p> FireFly.Base is a fan-made website for Genshin Impact players </p>

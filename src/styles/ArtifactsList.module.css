@@ -1,0 +1,19 @@
+.card {
+    width: 340px;
+    max-height: 440px;
+    background-color: #363643;
+    color: var(--text-color);
+}
+
+.cardTitle {
+    background-image: linear-gradient(244deg, rgba(49, 43, 71, .5294117647058824), transparent);
+    height: 160px;
+    img {
+        height: 160px;
+        width: 160px;
+    }
+}
+
+.cardDesc {
+    height: 230px;
+}

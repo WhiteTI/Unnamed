@@ -27,7 +27,7 @@ const CharacterList = () => {
     return (
         <div className='flex flex-wrap gap-x-7 gap-y-3 '>
             {elements.length
-                ? data?.filter(({Element}) => elements.includes(Element)).map(char => (
+                ? data?.filter(({element}) => elements.includes(element.name.toLowerCase())).map(char => (
                     <CharacterListCard
                         key={char.$id}
                         id={char.$id}

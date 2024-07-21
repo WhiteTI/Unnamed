@@ -35,10 +35,10 @@ const Header = () => {
                     <Link to='/characters'>
                         <img src={characters} alt="characters"/>
                     </Link>
-                    <Link to='#'>
+                    <Link to='/weapons'>
                         <img src={weapon} alt="weapon"/>
                     </Link>
-                    <Link to='#'>
+                    <Link to='/artifacts'>
                         <img src={artifacts} alt="artifacts"/>
                     </Link>
                 </nav>
