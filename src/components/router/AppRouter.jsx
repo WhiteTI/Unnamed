@@ -11,6 +11,10 @@ import {useState} from "react";
 import CharacterList from "../characterList/CharacterList.jsx";
 import WeaponsList from "../weaponsList/WeaponsList.jsx";
 import ArtifactsList from "../artifactsList/ArtifactsList.jsx";
+import Select from "../admin/Select.jsx";
+import CreateCharacter from "../admin/CreateCharacter.jsx";
+import CreateWeapon from "../admin/CreateWeapon.jsx";
+import CreateArtifact from "../admin/CreateArtifact.jsx";
 
 
 const AppRouter = () => {
@@ -34,7 +38,14 @@ const AppRouter = () => {
 
             <Route path='/' element={<Navigate to='/characters'/>}/>
 
-            <Route path='/admin' element={<Admin isLogin={isLogin}/>}/>
+            <Route path='/admin' element={<Admin isLogin={isLogin}/>}>
+                <Route index element={<Select/>}/>
+                <Route path='create-character' element={<CreateCharacter/>}/>
+                <Route path='create-weapon' element={<CreateWeapon/>}/>
+                <Route path='create-artifact' element={<CreateArtifact/>}/>
+            </Route>
+
+
             <Route path='/login' element={<Login isLogin={isLogin} setIsLogin={setIsLogin}/>}/>
 
             <Route path='*' element={<Page404/> }/>

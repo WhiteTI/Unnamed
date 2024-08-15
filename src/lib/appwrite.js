@@ -1,13 +1,15 @@
-import {Account, Client, Databases} from "appwrite";
+import {Account, Client, Databases, ID, Storage, Permission, Role} from "appwrite";
 
 const client = new Client();
 
 client
     .setEndpoint(import.meta.env.VITE_ENDPOINT)
-    .setProject(import.meta.env.VITE_PROJECTID);
+    .setProject(import.meta.env.VITE_PROJECTID)
 
-const databases = new Databases(client);
+const databases = new Databases(client)
 const account = new Account(client)
+
+const storage = new Storage(client)
 
 async function getAllCharacters() {
     try {
@@ -16,7 +18,7 @@ async function getAllCharacters() {
             import.meta.env.VITE_CHARACTER_COLLECTIONID
         );
     } catch (e) {
-        throw e.message
+        console.error(e.message)
     }
 }
 
@@ -28,7 +30,7 @@ async function getCharacter(id) {
             id
         )
     } catch (e) {
-        throw e.message
+        console.error(e.message)
     }
 }
 
@@ -39,7 +41,7 @@ async function getAllWeapons() {
             import.meta.env.VITE_WEAPONS_COLLECTIONID
         );
     } catch (e) {
-        throw e.message
+        console.error(e.message)
     }
 }
 
@@ -50,7 +52,39 @@ async function getAllArtifacts() {
             import.meta.env.VITE_ARTIFACTS_COLLECTIONID
         );
     } catch (e) {
-        throw e.message
+        console.error(e.message)
+    }
+}
+
+async function createCharacter(data) {
+    try {
+        return await databases.createDocument(
+            import.meta.env.VITE_DATABASEID,
+            import.meta.env.VITE_CHARACTER_COLLECTIONID,
+            ID.unique(),
+            JSON.stringify(data),
+            [
+                Permission.read(Role.any()),
+                Permission.delete(Role.user('669532bc001e5901da28')),
+                Permission.update(Role.user('669532bc001e5901da28')),
+                Permission.write(Role.user('669532bc001e5901da28'))
+            ]
+        )
+    } catch (e) {
+        console.error(e.message)
+    }
+}
+
+async function createFile(file) {
+    try {
+        return await storage.createFile(
+            import.meta.env.VITE_BUCKETID,
+            ID.unique(),
+            file,
+            [Permission.read(Role.any())]
+        )
+    } catch (e) {
+        console.error(e.message)
     }
 }
 
@@ -59,5 +93,7 @@ export {
     getCharacter,
     getAllWeapons,
     getAllArtifacts,
-    account
+    createFile,
+    createCharacter,
+    account,
 }

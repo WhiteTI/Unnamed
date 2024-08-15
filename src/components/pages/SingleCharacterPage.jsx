@@ -36,7 +36,7 @@ const SingleCharacterPage = () => {
     location = location.pathname.split('/').at(-1)
 
     if (isPending) return <Loading/>
-
+    console.log(data);
     return (
         <div className={`${classes.mainBgColor} relative`}>
             <Helmet>

@@ -28,8 +28,8 @@ const CharactersPage = () => {
                     </div>
                 </div>
 
-                <div className={`${classes.mainBgColor} h-screen`}>
-                    <div className='container mx-auto pt-8'>
+                <div className={`${classes.mainBgColor} `}>
+                    <div className='container mx-auto py-8 min-h-screen'>
                         <Outlet/>
                     </div>
                 </div>

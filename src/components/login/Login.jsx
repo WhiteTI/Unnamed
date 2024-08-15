@@ -7,6 +7,7 @@ const Login = ({isLogin, setIsLogin}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        checkUser()
         if (isLogin) navigate('/admin')
     }, [isLogin]);
 
@@ -28,7 +29,7 @@ const Login = ({isLogin, setIsLogin}) => {
     const checkUser = async () => {
         try {
             const user = await account.get()
-            console.log(user);
+            setIsLogin(true)
         } catch (e) {
             console.log(e);
             setIsLogin(false)
