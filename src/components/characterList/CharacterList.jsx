@@ -7,27 +7,46 @@ import FiltersContext from "../../context/FiltersContext.js";
 
 const CharacterList = () => {
 
-    // const [characters, setCharacters] = useState([])
-    //
+    const [characters, setCharacters] = useState([])
+
     // useEffect(() => {
     //     getAllCharacters()
     //         .then(data => setCharacters(data.documents))
     // }, []);
 
-    const {elements} = useContext(FiltersContext)
+    const {elements, search} = useContext(FiltersContext)
 
-    const {isPending, data} = useQuery({
+    const {isError, data, isLoading, error} = useQuery({
         queryKey: ['characters'],
         queryFn: () => getAllCharacters()
             .then(data => data.documents)
     })
 
-    if (isPending) return <Loading/>
+    useEffect(() => {
+        setCharacters(filtering)
+    }, [isLoading, elements, search]);
+
+    const filtering = () => {
+        if (!elements.length && !search)
+            return data
+
+        if (elements.length ) {
+            return data?.filter(({element}) => elements.includes(element.name.toLowerCase()))
+                .filter(({name}) => name.toLowerCase().includes(search.toLowerCase()))
+        } else {
+            return data?.filter(({name}) => name.toLowerCase().includes(search.toLowerCase()))
+        }
+    }
+
+    if (isLoading) return <Loading/>
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
 
     return (
-        <div className='flex flex-wrap gap-x-7 gap-y-3 '>
-            {elements.length
-                ? data?.filter(({element}) => elements.includes(element.name.toLowerCase())).map(char => (
+        <div className='flex flex-wrap gap-5 '>
+            {characters?.map(char => (
                     <CharacterListCard
                         key={char.$id}
                         id={char.$id}
@@ -37,21 +56,9 @@ const CharacterList = () => {
                         rarity={char.rarity}
                         weapon={char.weaponType}
                     />
-                ))
-                : data?.map(char => (
-                    <CharacterListCard
-                        key={char.$id}
-                        id={char.$id}
-                        name={char.name}
-                        element={char.element}
-                        img={char.listImage}
-                        rarity={char.rarity}
-                        weapon={char.weaponType}
-                    />
-                ))
-            }
+            ))}
         </div>
-    );
+    )
 };
 
 export default CharacterList;
