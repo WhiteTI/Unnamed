@@ -11,13 +11,16 @@ import cryo from '../../assets/img/cryo.svg'
 import geo from '../../assets/img/geo.svg'
 
 import FiltersContext from "../../context/FiltersContext.js";
+import {useLocation} from "react-router-dom";
 
-const ElementFilter = () => {
+const ElementFilter = ({grid}) => {
     const {elements, setElements} = useContext(FiltersContext)
+    const location = useLocation()
+    const show = location.pathname === '/characters'
 
     const elementsList = [
         {elem: 'pyro', img: pyro},
-        {elem: 'gidro', img: gidro},
+        {elem: 'hydro', img: gidro},
         {elem: 'anemo', img: anemo},
         {elem: 'electro', img: electro},
         {elem: 'dendro', img: dendro},
@@ -33,8 +36,8 @@ const ElementFilter = () => {
         }
     }
 
-    return (
-        <div className='flex gap-x-4'>
+    return show && (
+        <div className={`${grid} flex gap-x-4`}>
             {
                 elementsList.map(({elem, img}) => (
                     <button key={elem} className={`${classes.elementBtn}`} style={elements.includes(elem) ? {transform: 'scale(1.1)'} : {}} onClick={() => toggleElement(elem)}>
@@ -43,7 +46,7 @@ const ElementFilter = () => {
                 ))
             }
         </div>
-    );
+    )
 };
 
 export default ElementFilter;
