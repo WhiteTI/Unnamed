@@ -8,8 +8,6 @@ const Build = () => {
     const [character] = useOutletContext()
     const {skillPriority, weaponPriority, artifactPriority, statsPriority, substats} = character.build
 
-    console.log(artifactPriority);
-
     return (
         <>
             <div className='mb-3'>
@@ -24,7 +22,7 @@ const Build = () => {
                 <div className={`pt-1 flex gap-1 flex-wrap ${classes.content}`}>
 
                     {weaponPriority.map(item => (
-                        <div className={`flex items-center gap-x-2 p-2 ${classes.card}`}>
+                        <div key={item.$id} className={`flex items-center gap-x-2 p-2 ${classes.card}`}>
                             <div className={`${classes.imgWrapper}`}
                                  style={{backgroundColor: item.weapon[0].rarity == 5 ? 'var(--5-star-color)' : 'var(--4-star-color)'}}>
                                 <img src={item.weapon[0].image} alt={item.weapon[0].name}/>
@@ -43,7 +41,7 @@ const Build = () => {
                 <div className={`pt-1 flex gap-1 flex-wrap ${classes.content}`}>
 
                     {artifactPriority.map(item => (
-                        <div className={`flex items-center gap-x-2 p-2 ${classes.card}`}>
+                        <div key={item.$id} className={`flex items-center gap-x-2 p-2 ${classes.card}`}>
                             <div className={`${classes.imgWrapper}`}
                                  style={{backgroundColor: item.artifact[0].rarity == 5 ? 'var(--5-star-color)' : 'var(--4-star-color)'}}>
                                 <img src={item.artifact[0].image} alt={item.artifact[0].name}/>
