@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useOutletContext} from "react-router-dom";
+import parse from 'html-react-parser';
 
 import classes from '../../styles/Overview.module.css'
 import star from '../../assets/img/5star.svg'
@@ -19,7 +20,7 @@ const Overview = () => {
         stars.push(<img key={i} src={star} alt="Star"/>)
     }
 
-    const desc = character.description?.split(' ')
+    const desc = parse(character.description.replace('*', '&#9733;'))
 
     return (
         <>
@@ -60,13 +61,9 @@ const Overview = () => {
                 </div>
             </div>
 
-            <p className={classes.description}>
-                {desc?.map((text, i) => {
-                    if (text === 'Pyro') return <span key={i} style={{color: `var(${color})`, fontWeight: 600}}>{text} </span>
-                    if (text.includes('*')) return <span key={i} style={{color: 'var(--4-star-color)'}}>{text.replace('*', '')}&#9733; </span>
-                    return <span key={i}>{text} </span>
-                })}
-            </p>
+            <div className={classes.description} id='description'>
+                {desc}
+            </div>
 
             <div className='w-full mt-6'>
                 <div className={`flex items-center gap-x-5 p-4 ${classes.levelBackground}`}>
@@ -75,7 +72,10 @@ const Overview = () => {
                         {character.level[characterLevel - 1].level}
                     </div>
 
-                    <input style={{width: '312px'}} type="range" min={1} max={8} step={1} value={characterLevel} onChange={(event) => setCharacterLevel(event.target.value)}/>
+                    <div style={{width: '332px'}} className={`flex items-center justify-center ${classes.inputWrapper}`}>
+                        <input style={{width: '312px'}} type="range" min={1} max={8} step={1} value={characterLevel}
+                               onChange={(event) => setCharacterLevel(event.target.value)}/>
+                    </div>
                 </div>
                 <div className='flex gap-x-1'>
                     <div className={`py-5 pl-2 flex items-center ${classes.levelStats}`}>
@@ -126,9 +126,6 @@ const Overview = () => {
                     }
                 </div>
                 <hr className='my-6'/>
-                {/*<div className='flex gap-x-5'>*/}
-                {/*    <SkillInfo skill={activeSkill}/>*/}
-                {/*</div>*/}
                 {
                     character.skill.map(item => (
                         <div key={item.$id} className='flex gap-x-14' style={{display: activeSkill.$id == item.$id ? 'flex' : 'none', height: '460px'}}>
@@ -139,16 +136,16 @@ const Overview = () => {
                 }
             </div>
 
-            <div className='flex gap-x-4 mt-5'>
+            <div className='flex gap-x-4 mt-5 content-stretch'>
                 {
                     character.passiveSkill.map(skill =>
-                        <div key={skill.$id} className='basis-1/3'>
+                        <div key={skill.$id} className='basis-1/3' style={{backgroundColor: '#24242E', borderRadius: '0 0 4px 4px'}}>
                             <div className='flex items-center py-2 px-4 text-lg font-semibold gap-x-5' style={{backgroundColor: '#191920', borderRadius: '4px 4px 0 0'}}>
                                 <img src={skill.image} alt={skill.name} className='w-16'/>
                                 <span>{skill.name}</span>
                             </div>
                             <hr/>
-                            <div className='py-2 px-4' style={{backgroundColor: '#24242E', borderRadius: '0 0 4px 4px'}}>
+                            <div className='py-2 px-4'>
                                 <p>{skill.description}</p>
                             </div>
                         </div>
@@ -176,11 +173,16 @@ const SkillInfo = ({skill}) => {
                     <div className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
                         {skillLevel}
                     </div>
-                    <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel} onChange={(event) => setSkillLevel(event.target.value)}/>
+                    <div style={{width: '412px'}} className={`flex items-center justify-center ${classes.inputWrapper}`}>
+                        <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel}
+                               onChange={(event) => setSkillLevel(event.target.value)}/>
+                    </div>
+
                 </div>
                 <div>
                     {skill.skillStats[skillLevel - 1].value.map(stat => (
-                        <div className='py-1.5 px-3 mb-0.5' style={{borderRadius: '4px', backgroundColor: '#191920'}} key={stat}>{stat}</div>
+                        <div className='py-1.5 px-3 mb-0.5' style={{borderRadius: '4px', backgroundColor: '#191920'}}
+                             key={stat}>{stat}</div>
                     ))}
                 </div>
             </div>
