@@ -16,7 +16,6 @@ import CreateCharacter from "../admin/CreateCharacter.jsx";
 import CreateWeapon from "../admin/CreateWeapon.jsx";
 import CreateArtifact from "../admin/CreateArtifact.jsx";
 
-
 const AppRouter = () => {
     const [isLogin, setIsLogin] = useState(false)
 
@@ -44,7 +43,6 @@ const AppRouter = () => {
                 <Route path='create-weapon' element={<CreateWeapon/>}/>
                 <Route path='create-artifact' element={<CreateArtifact/>}/>
             </Route>
-
 
             <Route path='/login' element={<Login isLogin={isLogin} setIsLogin={setIsLogin}/>}/>
 
