@@ -19,8 +19,8 @@ const Header = () => {
 
                 <div className='h-56'>
                     <div className={`${classes.gameSwitcher} px-1 py-2 flex flex-col gap-y-2`}>
-                        <NavLink>
-                            <img src={genshinIcon} alt="geshin"/>
+                        <NavLink to='#'>
+                            <img src={genshinIcon} alt="geshin" className={classes.active}/>
                         </NavLink>
                         <NavLink>
                             <img src={hsrIcon} alt="honkai star rail"/>
