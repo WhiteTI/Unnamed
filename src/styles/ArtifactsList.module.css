@@ -1,5 +1,5 @@
 .card {
-    width: 340px;
+    /*width: 340px;*/
     max-height: 440px;
     background-color: #363643;
     color: var(--text-color);
@@ -15,5 +15,5 @@
 }
 
 .cardDesc {
-    height: 230px;
+    max-height: 230px;
 }
