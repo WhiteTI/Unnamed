@@ -36,14 +36,16 @@ const SingleCharacterPage = () => {
     location = location.pathname.split('/').at(-1)
 
     if (isPending) return <Loading/>
-    console.log(data);
+
     return (
         <div className={`${classes.mainBgColor} relative`}>
             <Helmet>
                 <title>{data.name}/{location}</title>
             </Helmet>
 
-            <img className={`${classes.fullWish} absolute z-0`} src={data.bgImage} alt=""/>
+            <div className={`absolute z-0 w-full overflow-hidden ${classes.fullWish}`} style={{height: '800px', backgroundImage: `url(${data.bgImage})`}}>
+                {/*<img className={`${classes.fullWish} z-0`} src={data.bgImage} alt={data.name}/>*/}
+            </div>
             <div className={`${classes.imageShadow} absolute z-0`}></div>
 
             <div className='container mx-auto pt-64'>
