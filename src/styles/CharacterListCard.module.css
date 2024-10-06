@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: -52px;
+    transition: .2s ease;
 
     img {
         width: 40px;
@@ -17,4 +18,8 @@
         top: 8px;
         left: 4px;
     }
+}
+
+.card:hover {
+    transform: scale(1.1);
 }
