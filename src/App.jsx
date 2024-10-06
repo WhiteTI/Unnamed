@@ -16,7 +16,7 @@ function App() {
     return (
         <>
             <Header/>
-            <main>
+            <main style={{paddingLeft: '64px'}}>
                 <QueryClientProvider client={queryClient}>
                     <AppRouter/>
                 </QueryClientProvider>
