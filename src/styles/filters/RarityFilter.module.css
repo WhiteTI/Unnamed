@@ -1,9 +1,9 @@
-.elementBtn {
+.rarityBtn {
     background-color: rgba(54, 54, 67, .45);
     backdrop-filter: blur(12px);
     width: 53px;
     height: 53px;
-    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.15);
     border-radius: 14px;
     transition: ease .2s;
 
@@ -18,5 +18,10 @@
 
     &[data-active="false"]:hover {
         filter: saturate(1);
+    }
+
+    & img {
+        width: 42px;
+        height: 42px;
     }
 }

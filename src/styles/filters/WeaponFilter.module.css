@@ -1,0 +1,26 @@
+.weaponSelect {
+    color: var(--text-color);
+    height: 53px;
+    background-color: rgba(54, 54, 67, .65);
+    backdrop-filter: blur(12px);
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 14px;
+    transition: ease .2s;
+
+    &:hover {
+        height: 380px;
+    }
+}
+
+.weaponSelectActive {
+    height: 53px;
+}
+
+.weaponSelectOptions {
+    height: 53px;
+
+    img {
+        height: 42px;
+        width: 42px;
+    }
+}

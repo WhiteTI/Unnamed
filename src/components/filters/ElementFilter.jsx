@@ -40,7 +40,12 @@ const ElementFilter = ({grid}) => {
         <div className={`${grid} flex gap-x-4`}>
             {
                 elementsList.map(({elem, img}) => (
-                    <button key={elem} className={`${classes.elementBtn}`} style={elements.includes(elem) ? {transform: 'scale(1.1)'} : {}} onClick={() => toggleElement(elem)}>
+                    <button key={elem}
+                            className={`${classes.elementBtn}`}
+                            data-active={!elements.length ? 'default' : elements.includes(elem) ? 'true' : 'false'}
+                            // style={elements.includes(elem) ? {transform: 'scale(1.1)', filter: 'saturate(1)'} : {filter: 'saturate(0)'}}
+                            onClick={() => toggleElement(elem)}
+                    >
                         <img src={img} alt={elem}/>
                     </button>
                 ))
