@@ -1,4 +1,4 @@
-import {Account, Client, Databases, ID, Storage, Permission, Role} from "appwrite";
+import {Account, Client, Databases, ID, Storage, Permission, Role, Query} from "appwrite";
 
 const client = new Client();
 
@@ -34,11 +34,15 @@ async function getCharacter(id) {
     }
 }
 
-async function getAllWeapons() {
+async function getAllWeapons(offset) {
     try {
         return await databases.listDocuments(
             import.meta.env.VITE_DATABASEID,
-            import.meta.env.VITE_WEAPONS_COLLECTIONID
+            import.meta.env.VITE_WEAPONS_COLLECTIONID,
+            [
+                Query.limit(25),
+                Query.offset(offset)
+            ]
         );
     } catch (e) {
         console.error(e.message)
@@ -49,7 +53,8 @@ async function getAllArtifacts() {
     try {
         return await databases.listDocuments(
             import.meta.env.VITE_DATABASEID,
-            import.meta.env.VITE_ARTIFACTS_COLLECTIONID
+            import.meta.env.VITE_ARTIFACTS_COLLECTIONID,
+            [Query.limit(100), Query.orderDesc('')]
         );
     } catch (e) {
         console.error(e.message)
@@ -75,13 +80,74 @@ async function createCharacter(data) {
     }
 }
 
-async function createFile(file) {
+async function createWeapon(data) {
+    try {
+        return await databases.createDocument(
+            import.meta.env.VITE_DATABASEID,
+            import.meta.env.VITE_WEAPONS_COLLECTIONID,
+            ID.unique(),
+            JSON.stringify(data),
+            [
+                Permission.read(Role.any()),
+                Permission.delete(Role.user('669532bc001e5901da28')),
+                Permission.update(Role.user('669532bc001e5901da28')),
+                Permission.write(Role.user('669532bc001e5901da28'))
+            ]
+        )
+    } catch (e) {
+        console.error(e.message)
+    }
+}
+
+async function createArtifact(data) {
+    try {
+        return await databases.createDocument(
+            import.meta.env.VITE_DATABASEID,
+            import.meta.env.VITE_ARTIFACTS_COLLECTIONID,
+            ID.unique(),
+            JSON.stringify(data),
+            [
+                Permission.read(Role.any()),
+                Permission.delete(Role.user('669532bc001e5901da28')),
+                Permission.update(Role.user('669532bc001e5901da28')),
+                Permission.write(Role.user('669532bc001e5901da28'))
+            ]
+        )
+    } catch (e) {
+        console.error(e.message)
+    }
+}
+
+async function createCharacterImage(file) {
     try {
         return await storage.createFile(
-            import.meta.env.VITE_BUCKETID,
+            import.meta.env.VITE_CHARACTERS_BUCKETID,
             ID.unique(),
             file,
-            [Permission.read(Role.any())]
+            [
+                Permission.read(Role.any()),
+                Permission.delete(Role.user('669532bc001e5901da28')),
+                Permission.update(Role.user('669532bc001e5901da28')),
+                Permission.write(Role.user('669532bc001e5901da28'))
+            ]
+        )
+    } catch (e) {
+        console.error(e.message)
+    }
+}
+
+async function createWeaponOrArtifactImage(file) {
+    try {
+        return await storage.createFile(
+            import.meta.env.VITE_WEAPONS_AND_ARTIFACTS_BUCKETID,
+            ID.unique(),
+            file,
+            [
+                Permission.read(Role.any()),
+                Permission.delete(Role.user('669532bc001e5901da28')),
+                Permission.update(Role.user('669532bc001e5901da28')),
+                Permission.write(Role.user('669532bc001e5901da28'))
+            ]
         )
     } catch (e) {
         console.error(e.message)
@@ -93,7 +159,10 @@ export {
     getCharacter,
     getAllWeapons,
     getAllArtifacts,
-    createFile,
+    createCharacterImage,
     createCharacter,
+    createWeapon,
+    createArtifact,
+    createWeaponOrArtifactImage,
     account,
 }

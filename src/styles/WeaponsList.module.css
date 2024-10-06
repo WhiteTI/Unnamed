@@ -15,5 +15,22 @@
 }
 
 .cardDesc {
-    height: 270px;
+    max-height: 270px;
+}
+
+.loadMore {
+    height: 54px;
+    width: 180px;
+    background-color: #28327e;
+    color: var(--text-color);
+    border-radius: 6px;
+    transition: opacity ease-in .5s ;
+
+    &:active {
+        filter: opacity(0.6);
+    }
+
+    &:disabled {
+        filter: saturate(0);
+    }
 }
