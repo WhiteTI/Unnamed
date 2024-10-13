@@ -1,6 +1,5 @@
-import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
+import {useSuspenseInfiniteQuery} from "@tanstack/react-query";
 import {getAllWeapons} from "../../lib/appwrite.js";
-import Loading from "../loading/Loading.jsx";
 import classes from "../../styles/WeaponsList.module.css";
 import parse from "html-react-parser";
 import {Fragment, useEffect, useRef} from "react";
@@ -18,13 +17,11 @@ const WeaponsList = () => {
 
     const {
         data,
-        error,
         fetchNextPage,
         hasNextPage,
         isFetching,
-        isFetchingNextPage,
-        status
-    } = useInfiniteQuery({
+        isFetchingNextPage
+    } = useSuspenseInfiniteQuery({
         queryKey: ['weapons'],
         queryFn: getWeapons,
         initialPageParam: 0,
@@ -48,7 +45,6 @@ const WeaponsList = () => {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-                    console.log('I am here')
                     fetchNextPage()
                 }
             })
@@ -63,11 +59,7 @@ const WeaponsList = () => {
         }
     }, [isFetching, isFetchingNextPage]);
     
-    return status === 'pending' ? (
-        <Loading/>
-    ) : status === 'error' ? (
-        <p>Error: {error.message}</p>
-    ) :  (
+    return (
         <>
             <div className='grid xl:grid-cols-4 md:grid-cols-3 auto-rows-auto  gap-4'>
                 {data.pages.map((group, index) => (
