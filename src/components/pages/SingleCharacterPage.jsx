@@ -68,7 +68,7 @@ const SingleCharacterPage = () => {
                     <div className='z-10 w-full'>
                         <h2 style={{color: `var(${data.element.color})`, borderBottom: `1px solid var(${data.element.color})`}} className={`${classes.titleBlock}`}>{location.toUpperCase()}</h2>
 
-                        <div className={`${classes.wrapper} p-8`}>
+                        <div className={`${classes.wrapper} p-8 min-h-96`}>
                             <Outlet context={[data, data.element.color, data.element.image]}/>
                         </div>
                     </div>
