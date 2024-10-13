@@ -6,6 +6,10 @@ import watch from '../../assets/img/Icon_Sands_of_Eon.webp'
 
 const Build = () => {
     const [character] = useOutletContext()
+
+    if (!character.build)
+        return <p>Build currently does not exist...</p>
+
     const {skillPriority, weaponPriority, artifactPriority, statsPriority, substats} = character.build
 
     return (
