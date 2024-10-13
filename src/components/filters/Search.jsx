@@ -8,9 +8,8 @@ import searchIcon from "../../assets/img/search.svg"
 const Search = ({grid}) => {
     const {search, setSearch} = useContext(FiltersContext)
     const location = useLocation()
-    const show = location.pathname === '/characters'
 
-    return show && (
+    return (
         <div className={`${grid} flex items-center p-3 ${classes.searchWrapper}`}>
             <label htmlFor='search'>
                 <img src={searchIcon} alt=""/>
@@ -21,8 +20,8 @@ const Search = ({grid}) => {
                 id='search'
                 type="search"
                 placeholder='Search'
-                value={search}
-                onChange={event => setSearch(event.target.value)}
+                value={search[location.pathname.slice(1)]}
+                onChange={event => setSearch(state => ({...state, [location.pathname.slice(1)]: event.target.value}))}
             />
         </div>
     );
