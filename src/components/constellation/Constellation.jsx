@@ -1,6 +1,7 @@
 import {useOutletContext} from "react-router-dom";
 
 import classes from '../../styles/Constellation.module.css'
+import parse from "html-react-parser";
 
 const Constellation = () => {
     const [character] = useOutletContext()
@@ -15,7 +16,7 @@ const Constellation = () => {
                             <span>{obj.name}</span>
                         </div>
                         <div className={`py-3 px-6 ${classes.constellationDecs}`}>
-                            <span>{obj.description}</span>
+                            <span>{parse(obj.description)}</span>
                         </div>
                     </div>
                 )
