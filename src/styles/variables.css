@@ -2,19 +2,22 @@
     --primary-bg-color: #14141B;
     --5-star-color: #FFCC33;
     --4-star-color: #9A69D4;
+    --3-star-color: #70a1e9;
+    --2-star-color: #4acc67;
+    --1-star-color: #9f9f9f;
     --pyro-color: #FF6640;
     --pyro-second-color: #3D1818;
     --hydro-color: #00c0ff;
-    --hydro-second-color: #3D1818;
+    --hydro-second-color: #182E3D;
     --dendro-color: #9be53d;
-    --dendro-second-color: #3D1818;
+    --dendro-second-color: #303D18;
     --electro-color: #cc80ff;
-    --electro-second-color: #3D1818;
+    --electro-second-color: #2F183D;
     --anemo-color: #33d7a0;
-    --anemo-second-color: #3D1818;
+    --anemo-second-color: #183D33;
     --cryo-color: #7af2f2;
-    --cryo-second-color: #3D1818;
+    --cryo-second-color: #183D3C;
     --geo-color: #ffb00d;
-    --geo-second-color: #3D1818;
+    --geo-second-color: #3D3218;
     --text-color: #EBEAEA;
 }
