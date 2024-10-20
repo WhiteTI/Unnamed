@@ -1,0 +1,14 @@
+.characterInfo {
+    background-color: #191920;
+    border-radius: 4px 4px 0px 0px;
+
+    img {
+        border-radius: 6px;
+        background-color: #363643;
+    }
+}
+
+.characterNotes {
+    background-color: #191920;
+    border-radius: 0px 0px 4px 4px;
+}

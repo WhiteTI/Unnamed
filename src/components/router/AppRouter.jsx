@@ -15,6 +15,7 @@ import Select from "../admin/Select.jsx";
 import CreateCharacter from "../admin/CreateCharacter.jsx";
 import CreateWeapon from "../admin/CreateWeapon.jsx";
 import CreateArtifact from "../admin/CreateArtifact.jsx";
+import Teams from "../teams/Teams.jsx";
 
 const AppRouter = () => {
     const [isLogin, setIsLogin] = useState(false)
@@ -31,7 +32,7 @@ const AppRouter = () => {
                 <Route path='overview' element={<Overview/>}/>
                 <Route path='builds' element={<Build/>}/>
                 <Route path='constellation' element={<Constellation/>}/>
-                <Route path='teams' element={<p>teams</p>}/>
+                <Route path='teams' element={<Teams/>}/>
                 <Route path='gallery' element={<p>gallery</p>}/>
             </Route>
 
