@@ -9,7 +9,6 @@
     height: 166px;
     border: 1.5px solid rgb(235, 234, 234);
     border-radius: 4px;
-    background:  var(--4-star-color);
 }
 
 .elreText {
@@ -39,7 +38,7 @@
     }
 
     .weaponText {
-        width: 100px;
+        width: 120px;
         height: 52px;
         border-radius: 0px 4px 4px 0px;
         background-color: #363643;
@@ -142,7 +141,7 @@
     padding: 22px;
 
     img {
-        width: 100px;
+        width: 70px;
         background-color: #1F1F27;
         border-radius: 6px;
     }

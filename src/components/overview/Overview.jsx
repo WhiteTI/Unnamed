@@ -16,6 +16,35 @@ const Overview = () => {
 
     const stars = []
 
+    const regionColor = getRegionColor(character.region)
+
+    function getRegionColor(region) {
+        switch (region) {
+            case 'Mondstadt':
+                return 'var(--anemo-color)'
+
+            case 'Liyue':
+                return 'var(--geo-color)'
+
+            case 'Inazuma':
+                return 'var(--electro-color)'
+
+            case 'Sumeru':
+                return 'var(--dendro-color)'
+
+            case 'Fontaine':
+                return 'var(--hydro-color)'
+
+            case 'Natlan':
+                return 'var(--pyro-color)'
+
+            case 'Snezhnaya':
+                return 'var(--cryo-color)'
+            default:
+                return ''
+        }
+    }
+
     for (let i = 0; i < +character.rarity; i++) {
         stars.push(<img key={i} src={star} alt="Star"/>)
     }
@@ -26,12 +55,12 @@ const Overview = () => {
         <>
             <div className='flex justify-between mb-7'>
                 <div className='flex gap-x-7'>
-                    <div className={`${classes.imgBackground}`}>
+                    <div className={`${classes.imgBackground}`} style={{backgroundColor: character.rarity == 5 ? 'var(--5-star-color)' : 'var(--4-star-color)'}}>
                         <img src={character.image} alt={character.name}/>
                     </div>
                     <div>
                         <p className='text-xl font-semibold mb-3'>{character.title}</p>
-                        <div className='flex justify-center'>
+                        <div className='flex justify-start'>
                             {stars}
                         </div>
                         <div className={classes.weapon}>
@@ -56,7 +85,7 @@ const Overview = () => {
                     </div>
                     <div>
                         <p className={`${classes.elreText}`}>Region</p>
-                        <p className='text-xl' style={{color: 'var(--anemo-color)'}}>{character.region}</p>
+                        <p className='text-xl' style={{color: regionColor}}>{character.region}</p>
                     </div>
                 </div>
             </div>
@@ -145,8 +174,8 @@ const Overview = () => {
                                 <span>{skill.name}</span>
                             </div>
                             <hr/>
-                            <div className='py-2 px-4'>
-                                <p>{skill.description}</p>
+                            <div className='py-2 px-4 max-h-96 overflow-y-auto'>
+                                <p>{parse(skill.description)}</p>
                             </div>
                         </div>
                     )
@@ -161,29 +190,43 @@ const SkillInfo = ({skill}) => {
 
     return (
         <>
-            <div className='w-6/12 overflow-auto'>
-                <p>{skill.description.split('').map((text, i) => {
-                    if (text === '*') return (<br key={i}/>)
-                    return <span key={i}>{text}</span>
-                })}</p>
+            <div className='w-6/12 overflow-auto pr-4'>
+                <p>{parse(skill.description)}</p>
             </div>
             <div className='w-6/12 overflow-auto'>
-                <div className='flex items-center gap-x-5 mb-2'>
-                    <p className='text-xl font-medium'>Level</p>
-                    <div className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
-                        {skillLevel}
+                {skill.skillStats[skillLevel - 1]
+                    ? <div className='flex items-center gap-x-5 mb-2'>
+                        <p className='text-xl font-medium'>Level</p>
+                        <div
+                            className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
+                            {skillLevel}
+                        </div>
+                        <div style={{width: '412px'}}
+                             className={`flex items-center justify-center ${classes.inputWrapper}`}>
+                            <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel}
+                                   onChange={(event) => setSkillLevel(event.target.value)}/>
+                        </div>
                     </div>
-                    <div style={{width: '412px'}} className={`flex items-center justify-center ${classes.inputWrapper}`}>
-                        <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel}
-                               onChange={(event) => setSkillLevel(event.target.value)}/>
-                    </div>
+                    : null
+                }
 
-                </div>
                 <div>
-                    {skill.skillStats[skillLevel - 1].value.map(stat => (
-                        <div className='py-1.5 px-3 mb-0.5' style={{borderRadius: '4px', backgroundColor: '#191920'}}
-                             key={stat}>{stat}</div>
-                    ))}
+                    {skill.skillStats[skillLevel - 1]
+                        ? skill.skillStats[skillLevel - 1].value.map(stat => (
+                            <div className='py-1.5 px-3 mb-0.5'
+                                 style={{borderRadius: '4px', backgroundColor: '#191920'}}
+                                 key={stat}
+                            >
+                                {stat.replace(':', ' : ')}
+                            </div>
+                        ))
+                        : skill.skillStats[0].value.map(stat => (
+                            <div className='py-1.5 px-3 mb-0.5'
+                                 style={{borderRadius: '4px', backgroundColor: '#191920'}}
+                                 key={stat}>{stat}
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </>
