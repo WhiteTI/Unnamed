@@ -2,27 +2,40 @@ import {useSuspenseInfiniteQuery} from "@tanstack/react-query";
 import {getAllWeapons} from "../../lib/appwrite.js";
 import classes from "../../styles/WeaponsList.module.css";
 import parse from "html-react-parser";
-import {Fragment, useEffect, useRef} from "react";
+import {Fragment, useContext, useEffect, useRef} from "react";
+import FiltersContext from "../../context/FiltersContext.js";
+import {Query} from "appwrite";
 
 const WeaponsList = () => {
+    const {search, rarityFilter, weaponFilter} = useContext(FiltersContext)
+
     const PAGE_SIZE = 25
 
     const loadMoreDiv = useRef(null);
 
     const getWeapons = async ({pageParam}) => {
+        const filters = []
+        if (search.weapons) {
+            filters.push(Query.search('name', search.weapons))
+        }
+        if (rarityFilter.weapons.length) {
+            filters.push(Query.equal('rarity', [...rarityFilter.weapons.map((num) => num.toString())]))
+            console.log(filters)
+        }
         const offset = pageParam * PAGE_SIZE
-        const response = await getAllWeapons(offset)
+        const response = await getAllWeapons(offset, filters)
         return response.documents
     }
 
     const {
         data,
+        error,
         fetchNextPage,
         hasNextPage,
         isFetching,
         isFetchingNextPage
     } = useSuspenseInfiniteQuery({
-        queryKey: ['weapons'],
+        queryKey: ['weapons', search.weapons, ...rarityFilter.weapons],
         queryFn: getWeapons,
         initialPageParam: 0,
         getNextPageParam: (lastPage, allPages, lastPageParam) => {
@@ -61,7 +74,7 @@ const WeaponsList = () => {
     
     return (
         <>
-            <div className='grid xl:grid-cols-4 md:grid-cols-3 auto-rows-auto  gap-4'>
+            <div className='grid xl:grid-cols-3 md:grid-cols-3 auto-rows-auto gap-4'>
                 {data.pages.map((group, index) => (
                     <Fragment key={index}>
                         {group.map(weapon => (

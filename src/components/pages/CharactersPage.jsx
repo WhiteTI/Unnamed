@@ -4,6 +4,10 @@ import {ErrorBoundary} from "react-error-boundary";
 
 import ElementFilter from "../filters/ElementFilter.jsx";
 import Search from "../filters/Search.jsx";
+import RarityFilter from "../filters/RarityFilter.jsx";
+import WeaponFilter from "../filters/WeaponFilter.jsx";
+import Loading from "../loading/Loading.jsx";
+import ErrorElement from "../error/ErrorElement.jsx";
 
 import FiltersContext from "../../context/FiltersContext.js";
 

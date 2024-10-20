@@ -1,12 +1,10 @@
 import {useContext, useEffect, useState} from "react";
 import {getAllCharacters} from "../../lib/appwrite.js";
 import CharacterListCard from "../characterListCard/CharacterListCard.jsx";
-import {useQuery} from "@tanstack/react-query";
-import Loading from "../loading/Loading.jsx";
+import {useSuspenseQuery} from "@tanstack/react-query";
 import FiltersContext from "../../context/FiltersContext.js";
 
 const CharacterList = () => {
-
     const [characters, setCharacters] = useState([])
 
     // useEffect(() => {
@@ -14,35 +12,46 @@ const CharacterList = () => {
     //         .then(data => setCharacters(data.documents))
     // }, []);
 
-    const {elements, search} = useContext(FiltersContext)
+    const {elements, search, rarityFilter, weaponFilter} = useContext(FiltersContext)
 
-    const {isError, data, isLoading, error} = useQuery({
+    const {data, error, isFetching} = useSuspenseQuery({
         queryKey: ['characters'],
         queryFn: () => getAllCharacters()
             .then(data => data.documents)
     })
 
+    if (error && !isFetching) {
+        throw error
+    }
+
     useEffect(() => {
         setCharacters(filtering)
-    }, [isLoading, elements, search]);
+    }, [elements, search.characters, rarityFilter.characters, weaponFilter.characters]);
 
     const filtering = () => {
-        if (!elements.length && !search)
+        if (!elements.length && !search.characters && !rarityFilter.characters.length && (weaponFilter.characters === 'All Weapons'))
             return data
 
-        if (elements.length ) {
-            return data?.filter(({element}) => elements.includes(element.name.toLowerCase()))
-                .filter(({name}) => name.toLowerCase().includes(search.toLowerCase()))
-        } else {
-            return data?.filter(({name}) => name.toLowerCase().includes(search.toLowerCase()))
-        }
+        let newData = data
+
+        if (elements.length)
+            newData =  newData.filter(({element}) => elements.includes(element.name.toLowerCase()))
+
+        if (rarityFilter.characters.length)
+            newData = newData.filter(({rarity}) => rarityFilter.characters.includes(+rarity))
+
+        if (weaponFilter.characters !== 'All Weapons')
+            newData = newData.filter(({weaponType}) => weaponFilter.characters.includes(weaponType.name))
+
+
+        return newData.filter(({name}) => name.toLowerCase().includes(search.characters.toLowerCase()))
     }
 
-    if (isLoading) return <Loading/>
+    // if (isLoading) return <Loading/>
 
-    if (isError) {
-        return <span>Error: {error.message}</span>
-    }
+    // if (isError) {
+    //     return <span>Error: {error.message}</span>
+    // }
 
     return (
         <div className='flex flex-wrap gap-5 '>

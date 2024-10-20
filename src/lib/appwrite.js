@@ -39,14 +39,17 @@ async function getCharacter(id) {
     }
 }
 
-async function getAllWeapons(offset) {
+async function getAllWeapons(offset, filters) {
     try {
         return await databases.listDocuments(
             import.meta.env.VITE_DATABASEID,
             import.meta.env.VITE_WEAPONS_COLLECTIONID,
             [
                 Query.limit(25),
-                Query.offset(offset)
+                Query.offset(offset),
+                Query.orderDesc("rarity"),
+                Query.orderAsc("weaponType"),
+                ...filters
             ]
         );
     } catch (e) {
