@@ -59,14 +59,23 @@ const SingleCharacterPage = () => {
                                         fontWeight: isActive ? 600 : '',
                                         borderRight: isActive ? `4px solid var(${data.element.color})` : '',
                                         borderRadius: isActive ? '4px 0px 0px 4px' : '',
-                                        background: isActive ? 'rgba(61, 24, 24, 0.58)' : ''
+                                        background: isActive ? `color(from var(${data.element.secondColor}) srgb r g b / 0.58)` : ''
                                     }
                                 }} to={link.path}>{link.text}</NavLink>
                             ))
                         }
                     </nav>
                     <div className='z-10 w-full'>
-                        <h2 style={{color: `var(${data.element.color})`, borderBottom: `1px solid var(${data.element.color})`}} className={`${classes.titleBlock}`}>{location.toUpperCase()}</h2>
+                        <h2
+                            style={{
+                                color: `var(${data.element.color})`,
+                                borderBottom: `1px solid var(${data.element.color})`,
+                                background: `linear-gradient(90.00deg, color(from var(${data.element.secondColor}) srgb r g b / 0.78) 0%,rgba(0, 0, 0, 0) 50.929%),linear-gradient(270.00deg, rgb(31, 31, 39) 4.079%,rgba(31, 31, 39, 0.32) 74.152%)`
+                            }}
+                            className={`${classes.titleBlock}`}
+                        >
+                            {location.toUpperCase()}
+                        </h2>
 
                         <div className={`${classes.wrapper} p-8 min-h-96`}>
                             <Outlet context={[data, data.element.color, data.element.image]}/>
