@@ -14,8 +14,8 @@ import FiltersContext from "../../context/FiltersContext.js";
 import classes from "../../styles/CharactersPage.module.css";
 
 import arrow from '../../assets/img/arrow_upward_48dp_E8EAED_FILL0_wght400_GRAD0_opsz48.svg'
-import RarityFilter from "../filters/RarityFilter.jsx";
-import WeaponFilter from "../filters/WeaponFilter.jsx";
+import {QueryErrorResetBoundary} from "@tanstack/react-query";
+import {Helmet} from "react-helmet";
 
 const CharactersPage = () => {
     const [elements, setElements] = useState([])
@@ -43,6 +43,9 @@ const CharactersPage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{`${location.pathname.slice(1)} list`}</title>
+            </Helmet>
             <FiltersContext.Provider value={{elements, setElements, search, setSearch, rarityFilter, setRarityFilter, weaponFilter, setWeaponFilter}}>
                 <div className={`bg-fixed ${classes.mainBgImage}`}>
                     <div className='container mx-auto pt-56'>
