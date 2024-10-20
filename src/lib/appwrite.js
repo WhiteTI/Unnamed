@@ -15,7 +15,12 @@ async function getAllCharacters() {
     try {
         return await databases.listDocuments(
             import.meta.env.VITE_DATABASEID,
-            import.meta.env.VITE_CHARACTER_COLLECTIONID
+            import.meta.env.VITE_CHARACTER_COLLECTIONID,
+            [
+                Query.limit(100),
+                // Query.select(['$id', 'name', 'listImage', 'rarity', 'weaponType']),
+                Query.orderDesc('')
+            ]
         );
     } catch (e) {
         console.error(e.message)
