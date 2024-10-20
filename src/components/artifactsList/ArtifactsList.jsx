@@ -12,11 +12,15 @@ const ArtifactsList = () => {
 
     const {search, rarityFilter} = useContext(FiltersContext)
 
-    const {data} = useSuspenseQuery({
+    const {data, error, isFetching} = useSuspenseQuery({
         queryKey: ['artifacts'],
         queryFn: () => getAllArtifacts()
             .then(response => response.documents)
     })
+
+    if (error && !isFetching) {
+        throw error
+    }
 
     useEffect(() => {
         setArtifacts(filtering)
