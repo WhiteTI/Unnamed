@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import {Outlet, useLocation} from "react-router-dom";
+import {ErrorBoundary} from "react-error-boundary";
 
 import ElementFilter from "../filters/ElementFilter.jsx";
 import Search from "../filters/Search.jsx";
@@ -53,7 +54,15 @@ const CharactersPage = () => {
 
                 <div className={`${classes.mainBgColor}`}>
                     <div className='container mx-auto py-8 min-h-screen'>
-                        <Outlet/>
+                        <QueryErrorResetBoundary>
+                            {({reset}) => (
+                                <ErrorBoundary onReset={reset} FallbackComponent={ErrorElement}>
+                                    <Suspense fallback={<Loading/>}>
+                                        <Outlet/>
+                                    </Suspense>
+                                </ErrorBoundary>
+                            )}
+                        </QueryErrorResetBoundary>
                     </div>
                     <div
                         style={{transition: 'ease-in .2s'}}
