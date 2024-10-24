@@ -1,15 +1,11 @@
-import classes from "../../styles/SingleCharacterPage.module.css";
-// import {useEffect, useState} from "react";
-import {getCharacter} from "../../lib/appwrite.js";
+import classes from "../styles/pages/SingleCharacterPage.module.css";
+import {getCharacter} from "../lib/appwrite.js";
 import {NavLink, Outlet, useLocation, useParams} from "react-router-dom";
-import useElement from "../../hooks/useElement.jsx";
 import {useQuery} from "@tanstack/react-query";
-import Loading from "../loading/Loading.jsx";
+import Loading from "../components/loading/Loading.jsx";
 import {Helmet} from "react-helmet";
 
 const SingleCharacterPage = () => {
-    // const [character, setCharacter] = useState({})
-
     const {id} = useParams()
 
     const links = [
@@ -19,11 +15,6 @@ const SingleCharacterPage = () => {
         {path: 'teams', text: 'Teams'},
         {path: 'gallery', text: 'Gallery'},
     ]
-
-    // useEffect(() => {
-    //     getCharacter(id)
-    //         .then(data => setCharacter(data))
-    // }, []);
 
     const {isPending, data} = useQuery({
         queryKey: ['character', id],
@@ -77,9 +68,9 @@ const SingleCharacterPage = () => {
                             {location.toUpperCase()}
                         </h2>
 
-                        <div className={`${classes.wrapper} p-8 min-h-96`}>
+                        <main className={`${classes.wrapper} p-8 min-h-96`}>
                             <Outlet context={[data, data.element.color, data.element.image]}/>
-                        </div>
+                        </main>
                     </div>
                 </div>
             </div>

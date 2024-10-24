@@ -1,5 +1,6 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import CharactersPage from "../pages/CharactersPage.jsx";
+
+import MainPage from "../pages/MainPage.jsx";
 import SingleCharacterPage from "../pages/SingleCharacterPage.jsx";
 import Overview from "../components/overview/Overview.jsx";
 import Build from "../components/build/Build.jsx";
@@ -13,7 +14,7 @@ import Teams from "../components/teams/Teams.jsx";
 const AppRouter = () => {
     return (
         <Routes>
-            <Route element={<CharactersPage/>}>
+            <Route element={<MainPage/>}>
                 <Route path='/characters' element={<CharacterList/>}/>
                 <Route path='/weapons' element={<WeaponsList/>}/>
                 <Route path='/artifacts' element={<ArtifactsList/>}/>

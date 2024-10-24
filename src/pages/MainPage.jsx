@@ -1,23 +1,23 @@
 import {Suspense, useEffect, useState} from "react";
 import {Outlet, useLocation} from "react-router-dom";
-import {ErrorBoundary} from "react-error-boundary";
-
-import ElementFilter from "../filters/ElementFilter.jsx";
-import Search from "../filters/Search.jsx";
-import RarityFilter from "../filters/RarityFilter.jsx";
-import WeaponFilter from "../filters/WeaponFilter.jsx";
-import Loading from "../loading/Loading.jsx";
-import ErrorElement from "../error/ErrorElement.jsx";
-
-import FiltersContext from "../../context/FiltersContext.js";
-
-import classes from "../../styles/CharactersPage.module.css";
-
-import arrow from '../../assets/img/arrow_upward_48dp_E8EAED_FILL0_wght400_GRAD0_opsz48.svg'
 import {QueryErrorResetBoundary} from "@tanstack/react-query";
+import {ErrorBoundary} from "react-error-boundary";
 import {Helmet} from "react-helmet";
 
-const CharactersPage = () => {
+import ElementFilter from "../components/filters/ElementFilter.jsx";
+import Search from "../components/filters/Search.jsx";
+import RarityFilter from "../components/filters/RarityFilter.jsx";
+import WeaponFilter from "../components/filters/WeaponFilter.jsx";
+import Loading from "../components/loading/Loading.jsx";
+import ErrorElement from "../components/error/ErrorElement.jsx";
+
+import FiltersContext from "/src/context/FiltersContext.js";
+
+import classes from "/src/styles/pages/MainPage.module.css";
+
+import arrow from '/src/assets/img/arrow_upward_48dp_E8EAED_FILL0_wght400_GRAD0_opsz48.svg'
+
+const MainPage = () => {
     const [elements, setElements] = useState([])
     const [search, setSearch] = useState({characters: '', weapons: '', artifacts: ''})
     const [rarityFilter, setRarityFilter] = useState({characters: [], weapons: [], artifacts: []})
@@ -59,8 +59,8 @@ const CharactersPage = () => {
                     </div>
                 </div>
 
-                <div className={`${classes.mainBgColor}`}>
-                    <div className='container mx-auto py-8 min-h-screen'>
+                <main className={`${classes.mainBgColor}`}>
+                    <div className='container mx-auto py-8 min-h-screen relative'>
                         <QueryErrorResetBoundary>
                             {({reset}) => (
                                 <ErrorBoundary onReset={reset} FallbackComponent={ErrorElement}>
@@ -83,10 +83,10 @@ const CharactersPage = () => {
                             <img src={arrow} alt="To Top"/>
                         </button>
                     </div>
-                </div>
+                </main>
             </FiltersContext.Provider>
         </>
     );
 };
 
-export default CharactersPage;
+export default MainPage;
