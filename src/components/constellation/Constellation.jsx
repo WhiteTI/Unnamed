@@ -1,6 +1,6 @@
 import {useOutletContext} from "react-router-dom";
 
-import classes from '../../styles/Constellation.module.css'
+import classes from '../../styles/components/Constellation.module.css'
 import parse from "html-react-parser";
 
 const Constellation = () => {

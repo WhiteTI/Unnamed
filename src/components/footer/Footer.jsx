@@ -1,4 +1,4 @@
-import classes from "../../styles/Footer.module.css";
+import classes from "../../styles/components/Footer.module.css";
 import reactLogo from '../../assets/img/react.png'
 
 const Footer = () => {

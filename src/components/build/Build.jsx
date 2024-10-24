@@ -1,5 +1,5 @@
 import {useOutletContext} from "react-router-dom";
-import classes from '../../styles/Build.module.css'
+import classes from '../../styles/components/Build.module.css'
 import head from '../../assets/img/Icon_Circlet_of_Logos.webp'
 import cup from '../../assets/img/Icon_Goblet_of_Eonothem.webp'
 import watch from '../../assets/img/Icon_Sands_of_Eon.webp'

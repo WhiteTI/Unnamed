@@ -5,7 +5,7 @@ import {useContext, useEffect, useState} from "react";
 
 import Loading from "../loading/Loading.jsx";
 import FiltersContext from "../../context/FiltersContext.js";
-import classes from "../../styles/ArtifactsList.module.css";
+import classes from "../../styles/components/ArtifactsList.module.css";
 
 const ArtifactsList = () => {
     const [artifacts, setArtifacts] = useState([])

@@ -7,7 +7,7 @@ import characters from '../../assets/img/characters.svg'
 import weapon from '../../assets/img/weapon.svg'
 import artifacts from '../../assets/img/art.svg'
 
-import classes from "../../styles/Header.module.css";
+import classes from "../../styles/components/Sidebar.module.css";
 
 const Sidebar = () => {
     return (

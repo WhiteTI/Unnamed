@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useOutletContext} from "react-router-dom";
 import parse from 'html-react-parser';
 
-import classes from '../../styles/Overview.module.css'
+import classes from '../../styles/components/Overview.module.css'
 import star from '../../assets/img/5star.svg'
 import baseHP from '../../assets/img/baseHP.svg'
 import baseATK from '../../assets/img/atk.svg'

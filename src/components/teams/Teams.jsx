@@ -1,5 +1,5 @@
 import {useOutletContext} from "react-router-dom";
-import classes from '../../styles/Teams.module.css'
+import classes from '../../styles/components/Teams.module.css'
 
 const Teams = () => {
     const [character] = useOutletContext()

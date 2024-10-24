@@ -1,6 +1,6 @@
 import {useSuspenseInfiniteQuery} from "@tanstack/react-query";
 import {getAllWeapons} from "../../lib/appwrite.js";
-import classes from "../../styles/WeaponsList.module.css";
+import classes from "../../styles/components/WeaponsList.module.css";
 import parse from "html-react-parser";
 import {Fragment, useContext, useEffect, useRef} from "react";
 import FiltersContext from "../../context/FiltersContext.js";
@@ -20,7 +20,6 @@ const WeaponsList = () => {
         }
         if (rarityFilter.weapons.length) {
             filters.push(Query.equal('rarity', [...rarityFilter.weapons.map((num) => num.toString())]))
-            console.log(filters)
         }
         const offset = pageParam * PAGE_SIZE
         const response = await getAllWeapons(offset, filters)
