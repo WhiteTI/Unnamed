@@ -9,9 +9,9 @@ import artifacts from '../../assets/img/art.svg'
 
 import classes from "../../styles/Header.module.css";
 
-const Header = () => {
+const Sidebar = () => {
     return (
-        <header className={`z-50 w-16 fixed h-screen py-3 ${classes.headerBg}`}>
+        <div className={`z-50 w-16 fixed h-screen py-3 ${classes.sidebarBg}`}>
             <div className='flex flex-col items-center'>
                 <div className='mb-7'>
                     <p className='text-4xl'>F</p>
@@ -43,8 +43,8 @@ const Header = () => {
                     </Link>
                 </nav>
             </div>
-        </header>
+        </div>
     );
 };
 
-export default Header;
+export default Sidebar;
