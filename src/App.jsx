@@ -2,7 +2,7 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 import Sidebar from "./components/sidebar/Sidebar.jsx";
 import Footer from "./components/footer/Footer.jsx";
-import AppRouter from "./components/router/AppRouter.jsx";
+import AppRouter from "./router/AppRouter.jsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {

@@ -1,9 +1,9 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import CharactersPage from "../pages/CharactersPage.jsx";
 import SingleCharacterPage from "../pages/SingleCharacterPage.jsx";
-import Overview from "../overview/Overview.jsx";
-import Build from "../build/Build.jsx";
-import Constellation from "../constellation/Constellation.jsx";
+import Overview from "../components/overview/Overview.jsx";
+import Build from "../components/build/Build.jsx";
+import Constellation from "../components/constellation/Constellation.jsx";
 import Page404 from "../pages/Page404.jsx";
 import CharacterList from "../components/characterList/CharacterList.jsx";
 import WeaponsList from "../components/weaponsList/WeaponsList.jsx";
