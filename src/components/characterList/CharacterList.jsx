@@ -7,11 +7,6 @@ import FiltersContext from "../../context/FiltersContext.js";
 const CharacterList = () => {
     const [characters, setCharacters] = useState([])
 
-    // useEffect(() => {
-    //     getAllCharacters()
-    //         .then(data => setCharacters(data.documents))
-    // }, []);
-
     const {elements, search, rarityFilter, weaponFilter} = useContext(FiltersContext)
 
     const {data, error, isFetching} = useSuspenseQuery({

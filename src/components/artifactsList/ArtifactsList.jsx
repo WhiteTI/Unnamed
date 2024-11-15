@@ -3,7 +3,6 @@ import {getAllArtifacts} from "../../lib/appwrite.js";
 import parse from "html-react-parser";
 import {useContext, useEffect, useState} from "react";
 
-import Loading from "../loading/Loading.jsx";
 import FiltersContext from "../../context/FiltersContext.js";
 import classes from "../../styles/components/ArtifactsList.module.css";
 

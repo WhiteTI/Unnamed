@@ -10,6 +10,7 @@ const Footer = () => {
                     <p> Website is not affiliated with miHoYo, all assets files are property of their original
                         owners </p>
                 </div>
+
                 <div className='mt-4 w-auto flex items-center gap-x-5'>
                     <div className='w-24'>
                         <a href='https://react.dev/' target='_blank'>
