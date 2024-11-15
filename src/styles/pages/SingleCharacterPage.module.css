@@ -14,15 +14,6 @@
 .fullWish {
     background-repeat: no-repeat;
     background-position: center;
-    /*background-size: 2530px;*/
-    /*width: 80vw;*/
-    /*height: 80vh;*/
-    /*width: 86%;*/
-    /*max-width: 1474px;*/
-    /*left: 152px;*/
-    /*top: -149px;*/
-    /*transform: scale(1.2);*/
-    /*max-width: 2000px;*/
 }
 
 .titleBlock {
@@ -52,6 +43,11 @@
     a {
         width: 180px;
         padding: 14px 20px 14px 16px;
+        border-radius: 4px 0 0 4px;
+    }
+
+    a:hover {
+        background-color: rgba(54, 54, 67, 0.4);
     }
 }
 

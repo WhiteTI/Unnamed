@@ -34,13 +34,11 @@ const SingleCharacterPage = () => {
                 <title>{data.name}/{location}</title>
             </Helmet>
 
-            <div className={`absolute z-0 w-full overflow-hidden ${classes.fullWish}`} style={{height: '800px', backgroundImage: `url(${data.bgImage})`}}>
-                {/*<img className={`${classes.fullWish} z-0`} src={data.bgImage} alt={data.name}/>*/}
-            </div>
+            <div className={`absolute z-0 w-full overflow-hidden ${classes.fullWish}`} style={{height: '800px', backgroundImage: `url(${data.bgImage})`}}></div>
             <div className={`${classes.imageShadow} absolute z-0`}></div>
 
-            <div className='container mx-auto pt-64'>
-                <h1 className={`${classes.name} font-bold uppercase z-10 relative mb-6`}>{data.name}</h1>
+            <div className='container mx-auto pt-64 relative z-10'>
+                <h1 className={`${classes.name} font-bold uppercase mb-6`}>{data.name}</h1>
                 <div className='flex'>
                     <nav className={`z-10 flex flex-col ${classes.menu}`}>
                         {
@@ -49,14 +47,13 @@ const SingleCharacterPage = () => {
                                     return {
                                         fontWeight: isActive ? 600 : '',
                                         borderRight: isActive ? `4px solid var(${data.element.color})` : '',
-                                        borderRadius: isActive ? '4px 0px 0px 4px' : '',
                                         background: isActive ? `color(from var(${data.element.secondColor}) srgb r g b / 0.58)` : ''
                                     }
                                 }} to={link.path}>{link.text}</NavLink>
                             ))
                         }
                     </nav>
-                    <div className='z-10 w-full'>
+                    <div className='w-full'>
                         <h2
                             style={{
                                 color: `var(${data.element.color})`,
