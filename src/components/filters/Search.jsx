@@ -9,7 +9,7 @@ import {debounce} from "lodash";
 
 const Search = ({grid}) => {
     const [value, setValue] = useState({characters: '', weapons: '', artifacts: ''})
-    const {search, setSearch} = useContext(FiltersContext)
+    const {setSearch} = useContext(FiltersContext)
     const location = useLocation()
 
     const callbackDebounce = useCallback(debounce((str) => {
