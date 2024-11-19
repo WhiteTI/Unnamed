@@ -146,11 +146,13 @@ const Overview = () => {
                     {
                         character.skill.map(skill =>
                             <button key={skill.$id}
-                                    onClick={() => setActiveSkill(skill)}><
-                                img
-                                src={skill.image}
-                                alt={skill.name}
-                                style={skill.$id === activeSkill.$id ? {border: `2px solid var(${color})`} : {}}/>
+                                    onClick={() => setActiveSkill(skill)}
+                            >
+                                <img
+                                    src={skill.image}
+                                    alt={skill.name}
+                                    style={skill.$id === activeSkill.$id ? {border: `2px solid var(${color})`} : {}}
+                                />
                             </button>)
                     }
                 </div>
