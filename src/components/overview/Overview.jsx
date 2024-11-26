@@ -203,8 +203,7 @@ const SkillInfo = ({skill}) => {
                             className={`w-12 h-12 text-xl font-medium flex justify-center items-center ${classes.level}`}>
                             {skillLevel}
                         </div>
-                        <div style={{width: '412px'}}
-                             className={`flex items-center justify-center ${classes.inputWrapper}`}>
+                        <div style={{width: '412px'}} className={`flex items-center justify-center ${classes.inputWrapper}`}>
                             <input style={{width: '392px'}} type="range" min={1} max={15} step={1} value={skillLevel}
                                    onChange={(event) => setSkillLevel(event.target.value)}/>
                         </div>
