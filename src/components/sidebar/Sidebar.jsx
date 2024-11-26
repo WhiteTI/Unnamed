@@ -1,4 +1,4 @@
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import genshinIcon from '../../assets/img/genshin.png'
 import hsrIcon from '../../assets/img/hsr.png'
@@ -19,15 +19,15 @@ const Sidebar = () => {
 
                 <div className='h-56'>
                     <div className={`${classes.gameSwitcher} px-1 py-2 flex flex-col gap-y-2`}>
-                        <NavLink to='#'>
+                        <a href='#'>
                             <img src={genshinIcon} alt="geshin" className={classes.active}/>
-                        </NavLink>
-                        <NavLink>
+                        </a>
+                        <a>
                             <img src={hsrIcon} alt="honkai star rail"/>
-                        </NavLink>
-                        <NavLink>
+                        </a>
+                        <a>
                             <img src={zzzIcon} alt="zzz"/>
-                        </NavLink>
+                        </a>
                     </div>
                 </div>
 
